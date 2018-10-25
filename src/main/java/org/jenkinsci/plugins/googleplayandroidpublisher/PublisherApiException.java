@@ -29,8 +29,10 @@ public class PublisherApiException extends UploadException {
                     errors.add("The API credentials provided do not have permission to apply these changes");
                 }
             } else {
+                if (details.getErrors() != null) {
                 for (GoogleJsonError.ErrorInfo error : details.getErrors()) {
                     errors.add(error.getMessage());
+                  }
                 }
                 this.errorMessages = Collections.unmodifiableList(errors);
             }
